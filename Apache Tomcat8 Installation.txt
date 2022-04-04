@@ -1,0 +1,21 @@
+---
+- name: Install Tomcat Server
+  hosts: all
+  become: true
+  tasks:
+   - name: Install java
+     apt:
+      name: java
+      state: latest
+   - name: Download tomcat
+     get_url:
+      url: https://dlcdn.apache.org/tomcat/tomcat-8/v8.5.77/bin/apache-tomcat-8.5.77.tar.gz
+      dest: /usr/local
+   - name: Unzip the file
+     unarchive:
+      src: /usr/local/apache-tomcat-8.5.77.tar.gz
+      dest: /usr/local
+   - name: Start tomcat
+     shell: nohup /usr/local/apache-tomcat-8.5.77/bin/startup.sh
+    
+     

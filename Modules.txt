@@ -1,0 +1,22 @@
+1) Copy Module:-
+Transfer file from Ansible Engine to Managed Nodes
+$ ansible [-i INVENTORY] [server] -m copy -a "src=/source/file/path dest=/dest/path"
+
+2) Fetch Module
+Download file from managed nodes to controller node
+$ ansible [-i INVENTORY] [server] -m fetch -a "src=/source/file/path dest=/dest/path"
+
+So, the fetch module has copied the file in the same path tmp/demo.txt under server2 directory. 
+Now I am sure most users wouldn't want this entire directory structure to be downloaded when all we want is just a file.
+To overcome this, we will use "flat=yes" which will only fetch the file instead of all the directory structure.
+
+$ ansible server2 -m fetch -a "src=/tmp/demo.txt dest=~/ flat=yes"
+
+3) To Copy files in the remote server i.e. the source and destination, both will be on the same remote server:-
+Copy files locally on the remote server (managed node) using ansible ad hoc commands
+In this section I will share the ansible ad hoc commands examples to create a file or directory on the managed nodes 
+i.e. the source and destination, both will be from the same managed node. 
+This can help you take backup of any configuration file before performing any configuration changes. 
+We will use the same copy module and it's syntax, additionally we need "remote_src=true" to be able to work locally on the managed node.
+
+$ ansible server1 -m copy -a "src=~/demo.txt dest=/tmp/demo.txt remote_src=yes"

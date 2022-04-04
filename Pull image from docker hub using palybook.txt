@@ -1,0 +1,10 @@
+---
+- name: pull jenkins image from dockerhub
+  become: true
+  hosts: all
+  gather_facts: no
+  tasks:
+  - name: pull image
+    docker_image:
+     name: jenkins:2.60.3
+     source: pull

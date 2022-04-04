@@ -1,0 +1,10 @@
+---
+- name: Remove Image in Remote Hosts
+  become: true
+  hosts: all
+  gather_facts: no
+  tasks:
+  - name: remove image
+    docker_image:
+     name: jenkins:2.60.3
+     state: absent
