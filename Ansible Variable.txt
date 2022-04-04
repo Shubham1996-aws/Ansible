@@ -1,0 +1,37 @@
+Using Variables:-
+
+Valid variable names:-  foo, foo_env, foo_port, foo5, _foo
+
+Not valid:- *foo, foo-port, foo port, foo.port, 5foo,12
+
+1) Simple variables:-
+You can define a simple variable using standard YAML syntax. For example:
+
+    remote_install_path: /opt/my_app_config
+
+Referencing simple variables
+After you define a variable, use Jinja2 syntax to reference it. Jinja2 variables use double curly braces.
+
+    - hosts: app_servers
+      vars:
+       app_path: "{{ remote_install_path }}"
+
+
+2) List variables:-
+A list variable combines a variable name with multiple values. The multiple values can be stored as an itemized list or in square brackets [], separated with commas.
+
+Defining variables as lists
+You can define variables with multiple values using YAML lists. For example:
+
+
+   region:
+    - northeast
+    - southeast
+    - midwest
+
+Referencing list variables
+When you use variables defined as a list (also called an array), you can use individual, specific fields from that list. 
+The first item in a list is item 0, the second item is item 1. For example:
+
+     region: "{{ region[0] }}"
+The value of this expression would be “northeast”.
