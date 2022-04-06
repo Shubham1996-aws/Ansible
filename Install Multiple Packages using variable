@@ -1,0 +1,13 @@
+---
+- name: Install multiple packages
+  hosts: all
+  become: true
+  vars:
+   package:
+    - maven
+    - nodejs
+    - npm
+  - name: install packages
+    apt:
+     name: "{{ package }}"
+     state: present
