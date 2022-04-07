@@ -1,0 +1,11 @@
+---
+- name: Clone private git repo
+  become: true
+  hosts: all
+  vars_files:
+   - pass.yml
+  tasks:
+  - name: clone the repo
+    git:
+     repo: https://{{ username }}:{{ password }}@github.com/Shubham1996-aws/AWS.git
+     dest: /opt/folder
