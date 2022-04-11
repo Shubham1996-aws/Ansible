@@ -1,0 +1,11 @@
+---
+- name: Copy Inventory file to All Hosts.
+  hosts: all
+  tasks:
+  - name: copy inventory to hosts
+    copy:
+     src: /etc/ansible/hosts
+     dest: /tmp
+     owner: ubuntu
+     group: ubuntu
+     mode: 0755
