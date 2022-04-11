@@ -1,0 +1,6 @@
+---
+- name: ping remote servers
+  hosts: all
+  tasks:
+  - name: Test connection
+    ping:
