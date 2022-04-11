@@ -1,0 +1,13 @@
+---
+- name: Install git and clone the repo
+  become: true
+  hosts: all
+  tasks:
+  - name: install git in host
+    apt:
+     name: git
+     state: present
+  - name: clone the repo
+    git:
+     repo: https://github.com/Shubham1996-aws/vuejs.git
+     dest: /tmp/dir
