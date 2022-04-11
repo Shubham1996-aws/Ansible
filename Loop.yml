@@ -1,0 +1,13 @@
+---
+- name: Install wget,zip and vim on all hosts.
+  become: true
+  hosts: all
+  tasks:
+  - name: install packages
+    apt:
+     name: "{{ item }}"
+     state: present
+     wit_items:
+     - wget
+     - zip
+     - vim
