@@ -146,5 +146,5 @@ save and quit
 
 $ ls -la     ( to see the list in the current machine )
 $ ansible all  -a  'ls  -la'    ( you will get the list of the files in all managed nodes )
-
+.
 
