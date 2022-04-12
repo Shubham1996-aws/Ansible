@@ -44,5 +44,5 @@
     
   - name: print init password jenkins
     debug:
-     - var: result
+     - var: result.stdout
      
