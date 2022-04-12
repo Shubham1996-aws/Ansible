@@ -1,4 +1,4 @@
-2 Ways  ansible can 
+2 Ways  ansible can:
 1) adhoc commands
 2) playbooks
 
