@@ -1,0 +1,48 @@
+---
+- name: install jenkins on all hosts
+  become: true
+  hosts: all
+  tasks:
+  - name: install openjdk
+    apt:
+     name: openjdk-11-jre
+     state: present
+   
+  - name: install curl
+    apt:
+     name: curl
+     state: present
+   
+  - name: a
+    shell: curl -fsSL https://pkg.jenkins.io/debian-stable/jenkins.io.key | sudo tee \
+           /usr/share/keyrings/jenkins-keyring.asc > /dev/null
+            
+  - name: b
+    shell: echo deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] \
+           https://pkg.jenkins.io/debian-stable binary/ | sudo tee \
+           /etc/apt/sources.list.d/jenkins.list > /dev/null
+             
+  - name: install jenkins
+    apt:
+     name: jenkins
+     state: present
+     update_cache: yes
+     
+  - name: start jenkins
+    service:
+     name: jenkins
+     state: started
+     
+  - name: enable jenkins
+    systemd:
+     name: jenkins
+     enabled: true
+  
+  - name: init jenkins password
+    shell: cat /var/lib/jenkins/secrets/initialAdminPassword
+    register: result
+    
+  - name: print init password jenkins
+    debug:
+     - var: result
+     
