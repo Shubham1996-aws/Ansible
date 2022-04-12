@@ -1,5 +1,5 @@
 
-Host scope variables
+Host scope variables:
 --------------------
 These variables are classified into 2 types
 1) Variables to work on group of hosts
